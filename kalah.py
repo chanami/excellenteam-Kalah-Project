@@ -34,3 +34,6 @@ class Kalah(object):
 
     def done(self):
         return self.game_over
+
+    def score(self):
+        return tuple(self.bank)

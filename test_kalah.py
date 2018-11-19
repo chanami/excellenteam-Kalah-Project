@@ -19,6 +19,9 @@ class KalahTestCase(unittest.TestCase):
     def test_game_over(self):
         self.assertEqual(self.game.done(), False)
 
+    def test_get_score(self):
+        self.assertEqual(self.game.score(), (0,0))
+
     def tearDown(self):
         pass
 

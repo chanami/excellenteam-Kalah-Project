@@ -9,6 +9,9 @@ class KalahTestCase(unittest.TestCase):
     def test_init_status(self):
         self.assertEqual(self.game.status(), (4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0))
 
+    def test_illegal_hole(self):
+        self.assertRaises(IndexError, self.game.play, 8)
+
     def tearDown(self):
         pass
 

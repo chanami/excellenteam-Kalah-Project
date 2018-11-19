@@ -25,6 +25,10 @@ class KalahTestCase(unittest.TestCase):
     def test_simple_move(self):
         self.assertEqual(self.game.play(0),"Player 2 plays next")
 
+    def test_Crossing_move(self):
+        self.assertEqual(self.game.play(3), "Player 2 plays next")
+        self.assertEqual(self.game.status(), (4, 4, 4, 0, 5, 5, 1, 5, 4, 4, 4, 4, 4, 0))
+
     def tearDown(self):
         pass
 

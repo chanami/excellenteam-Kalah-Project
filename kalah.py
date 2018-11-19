@@ -27,18 +27,29 @@ class Kalah(object):
         seeds = self.board[hole + player*self.holes]
 
         self.board[hole + player * self.holes] = 0
-        index = hole+1
+        index = hole + player * self.holes + 1
         while seeds:
             if not player and index == self.holes:
                 self.bank[0] += 1
-            elif player and index == self.holes*2:
+                seeds -= 1
+                if not seeds:
+                    continue
+            if player and index == self.holes*2:
                 self.bank[1] += 1
-            self.board[index + player * self.holes] += 1
-            index += 1
+                seeds -= 1
+                if not seeds:
+                    continue
+                index = (index + 1) % (self.holes * 2 + 1)
+
+            self.board[index] += 1
+            index = (index+1) % (self.holes*2+1)
             seeds -= 1
-        print(f" board is after{self.board} and bank is {self.bank}")
         if not self.is_game_over():
-            return f'Player {(1-self.current_player)+1} plays next'
+            if index == self.holes + player * self.holes:
+                return f'Player {self.current_player+1} plays next'
+            else:
+                self.current_player = not self.current_player
+                return f'Player {self.current_player+1} plays next'
 
     def status(self):
         return tuple(self.board[0: self.holes] + [self.bank[0]] + \

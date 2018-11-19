@@ -11,8 +11,7 @@ class Kalah(object):
         if hole not in range(self.holes):
             raise IndexError("invalid index number :(")
 
-        if not self.current_player and self.board[hole] == 0 or \
-                self.current_player and self.board[hole + self.holes] == 0:
+        if self.board[hole + self.current_player*self.holes] == 0:
             raise ValueError("cannot play this move no seeds")
 
     def is_game_over(self):
@@ -24,7 +23,20 @@ class Kalah(object):
 
     def play(self, hole):
         self.valid_hole(hole)
+        player = self.current_player
+        seeds = self.board[hole + player*self.holes]
 
+        self.board[hole + player * self.holes] = 0
+        index = hole+1
+        while seeds:
+            if not player and index == self.holes:
+                self.bank[0] += 1
+            elif player and index == self.holes*2:
+                self.bank[1] += 1
+            self.board[index + player * self.holes] += 1
+            index += 1
+            seeds -= 1
+        print(f" board is after{self.board} and bank is {self.bank}")
         if not self.is_game_over():
             return f'Player {(1-self.current_player)+1} plays next'
 

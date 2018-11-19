@@ -22,10 +22,11 @@ class KalahTestCase(unittest.TestCase):
     def test_get_score(self):
         self.assertEqual(self.game.score(), (0,0))
 
+    def test_simple_move(self):
+        self.assertEqual(self.game.play(0),"Player 2 plays next")
+
     def tearDown(self):
         pass
-
-
 
 
 

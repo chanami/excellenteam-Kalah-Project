@@ -16,6 +16,9 @@ class KalahTestCase(unittest.TestCase):
         self.game.board[1] = 0
         self.assertRaises(ValueError, self.game.play, 1)
 
+    def test_game_over(self):
+        self.assertEqual(self.game.done(), False)
+
     def tearDown(self):
         pass
 

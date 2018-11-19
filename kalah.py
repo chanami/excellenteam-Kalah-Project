@@ -31,3 +31,6 @@ class Kalah(object):
     def status(self):
         return tuple(self.board[0: self.holes] + [self.bank[0]] + \
                      self.board[self.holes: (self.holes * 2) + 1] + [self.bank[1]])
+
+    def done(self):
+        return self.game_over

@@ -12,6 +12,10 @@ class KalahTestCase(unittest.TestCase):
     def test_illegal_hole(self):
         self.assertRaises(IndexError, self.game.play, 8)
 
+    def test_empty_hole(self):
+        self.game.board[1] = 0
+        self.assertRaises(ValueError, self.game.play, 1)
+
     def tearDown(self):
         pass
 

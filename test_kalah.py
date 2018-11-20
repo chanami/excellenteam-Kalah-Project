@@ -62,6 +62,13 @@ class KalahTestCase(unittest.TestCase):
         self.assertEqual(self.game.play(5), "Player 2 plays next")
         self.assertEqual(self.game.status(), (1, 1, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 0))
 
+    def test_empty_hole_2(self):
+        self.assertEqual(self.game.play(0), "Player 2 plays next")
+        self.assertEqual(self.game.status(), (0, 5, 5, 5, 5, 4, 0, 4, 4, 4, 4, 4, 4, 0))
+        self.assertEqual(self.game.play(0), "Player 1 plays next")
+        self.assertEqual(self.game.status(), (0, 5, 5, 5, 5, 4, 0, 0, 5, 5, 5, 5, 4, 0))
+        self.assertRaises(ValueError, self.game.play, 0)
+
     def tearDown(self):
         pass
 

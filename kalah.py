@@ -48,6 +48,7 @@ class Kalah(object):
             if ex and seeds == 1:
                 index = (index + 1) % (self.holes * 2)
             seeds -= 1
+
         opposite_index = self.holes*2-1-index
         if self.board[index] == 1 and self.board[opposite_index] > 0:
             self.bank[player] += self.board[opposite_index]+1
@@ -58,7 +59,7 @@ class Kalah(object):
             self.bank[1] += sum(self.board[self.holes:])
             self.game_over = True
 
-        if not player and sum(self.board[self.holes:]) == 0:
+        elif not player and sum(self.board[self.holes:]) == 0:
             self.bank[0] += sum(self.board[:self.holes])
             self.game_over = True
         if self.game_over:

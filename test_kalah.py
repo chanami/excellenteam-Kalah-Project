@@ -116,6 +116,13 @@ class KalahTestCase(unittest.TestCase):
         self.assertEqual(self.game.status(), (0, 0, 2, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 12))
         self.assertEqual(self.game.play(2), "Tie")
 
+    def test_game_over_bonus(self):
+        self.game.set_board([0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0])
+        self.game.set_bank([14, 12])
+        self.assertEqual(self.game.status(), (0, 0, 0, 0, 2, 0, 14, 0, 0, 0, 0, 0, 0, 12))
+        self.assertEqual(self.game.play(4), "Player 1 Wins")
+
+
     def tearDown(self):
         pass
 

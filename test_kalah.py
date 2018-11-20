@@ -97,6 +97,25 @@ class KalahTestCase(unittest.TestCase):
         self.assertEqual(self.game.play(0), "Player 2 plays next")
         self.assertEqual(self.game.status(), (0, 1, 1, 0, 0, 9, 0, 1, 3, 1, 0, 0, 9, 0))
 
+    def test_game_over_capture2(self):
+        self.game.set_board([0, 0, 0, 0, 0, 2, 1, 3, 1, 0, 0, 9])
+        self.assertEqual(self.game.status(), (0, 0, 0, 0, 0, 2, 0, 1, 3, 1, 0, 0, 9, 0))
+        self.assertEqual(self.game.play(5), "Player 2 plays next")
+        self.assertEqual(self.game.status(), (0, 0, 0, 0, 0, 0, 1, 2, 3, 1, 0, 0, 9, 0))
+        self.assertEqual(self.game.play(0), "Player 2 Wins")
+
+    def test_game_over_capture1(self):
+        self.game.set_board([0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.game.set_bank([20,10])
+        self.assertEqual(self.game.status(), (0, 0, 2, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 10))
+        self.assertEqual(self.game.play(2), "Player 1 Wins")
+
+    def test_game_over_tie(self):
+        self.game.set_board([0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        self.game.set_bank([10, 12])
+        self.assertEqual(self.game.status(), (0, 0, 2, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 12))
+        self.assertEqual(self.game.play(2), "Tie")
+
     def tearDown(self):
         pass
 

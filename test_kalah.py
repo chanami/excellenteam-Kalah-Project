@@ -91,6 +91,12 @@ class KalahTestCase(unittest.TestCase):
         self.assertEqual(self.game.play(1), "Player 1 plays next")
         self.assertEqual(self.game.status(), (0, 0, 0, 0, 0, 9, 2, 1, 0, 2, 1, 0, 9, 2))
 
+    def test_none_capture(self):
+        self.game.set_board([2, 0, 0, 0, 0, 9, 1, 3, 1, 0, 0, 9])
+        self.assertEqual(self.game.status(), (2, 0, 0, 0, 0, 9, 0, 1, 3, 1, 0, 0, 9, 0))
+        self.assertEqual(self.game.play(0), "Player 2 plays next")
+        self.assertEqual(self.game.status(), (0, 1, 1, 0, 0, 9, 0, 1, 3, 1, 0, 0, 9, 0))
+
     def tearDown(self):
         pass
 

@@ -53,6 +53,7 @@ class Kalah(object):
             if player and index == 0:
                 self.bank[1] += 1
                 seeds -= 1
+                bank_exception_flag = True
                 if not seeds:
                     continue
 
@@ -69,10 +70,10 @@ class Kalah(object):
 
         if self.is_game_over:
             return self.game_over()
-        else:
-            if (not (index == self.holes and not player)) and (not (index == 0 and player)):
-                self.current_player = not self.current_player
-            return f'Player {self.current_player+1} plays next'
+
+        elif (not (index == self.holes and not player)) and (not (index == 0 and player and bank_exception_flag)):
+            self.current_player = not self.current_player
+        return f'Player {self.current_player+1} plays next'
 
     def status(self):
         return tuple(self.board[0: self.holes] + [self.bank[0]] + \

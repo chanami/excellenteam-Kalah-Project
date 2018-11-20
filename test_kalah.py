@@ -124,6 +124,39 @@ class KalahTestCase(unittest.TestCase):
         self.assertEqual(self.game.play(4), "Player 1 Wins")
 
 
+
+
+
+    def test_init_status_6(self):
+        self.assertEqual(self.game1.status(), (6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 0))
+
+    def test_illegal_hole_6(self):
+        self.assertRaises(IndexError, self.game1.play, 8)
+
+    def test_empty_hole_6(self):
+        self.game1.board[1] = 0
+        self.assertRaises(ValueError, self.game1.play, 1)
+
+    def test_game_over_6(self):
+        self.assertEqual(self.game1.done(), False)
+
+    def test_get_score_6(self):
+        self.assertEqual(self.game1.score(), (0,0))
+
+    def test_simple_move_(self):
+        self.assertEqual(self.game1.play(1), "Player 2 plays next")
+        self.assertEqual(self.game1.status(), (6, 0, 7, 7, 7, 7, 1, 7, 6, 6, 6, 6, 6, 0))
+
+    def test_Crossing_move_6(self):
+        self.assertEqual(self.game1.play(3), "Player 2 plays next")
+        self.assertEqual(self.game1.status(), (6, 6, 6, 0, 7, 7, 1, 7, 7, 7, 6, 6, 6, 0))
+
+    def test_Two_simple_moves_6(self):
+        self.assertEqual(self.game1.play(1), "Player 2 plays next")
+        self.assertEqual(self.game1.status(), (6, 0, 7, 7, 7, 7, 1, 7, 6, 6, 6, 6, 6, 0))
+        self.assertEqual(self.game1.play(0), "Player 1 plays next")
+        self.assertEqual(self.game1.status(), (7, 0, 7, 7, 7, 7, 1, 0, 7, 7, 7, 7, 7, 1))
+
     def tearDown(self):
         pass
 

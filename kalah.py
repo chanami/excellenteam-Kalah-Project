@@ -22,11 +22,9 @@ class Kalah(object):
         return False
 
     def play(self, hole):
-        print(f"hole----{hole}")
         self.valid_hole(hole)
         player = self.current_player
         seeds = self.board[hole + player*self.holes]
-        print(f"{hole + player * self.holes}")
         self.board[hole + player * self.holes] = 0
         index = hole + player * self.holes
 
@@ -51,11 +49,11 @@ class Kalah(object):
                 index = (index + 1) % (self.holes * 2)
             seeds -= 1
         opposite_index = self.holes*2-1-index
+        # print(f"opposite index is {opposite_index} index is --- {index}")
         if self.board[index] == 1 and self.board[opposite_index] > 0:
             self.bank[player] += self.board[opposite_index]+1
             self.board[index] = 0
             self.board[opposite_index] = 0
-
 
         if not self.is_game_over():
             if (not (index == self.holes and not player)) and (not (index == 0 and player)):
@@ -73,9 +71,7 @@ class Kalah(object):
         return tuple(self.bank)
 
     def set_board(self, l_board):
-
         self.board = l_board
 
     def set_bank(self, l_bank):
-
         self.bank = l_bank

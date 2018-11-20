@@ -50,6 +50,13 @@ class Kalah(object):
             if ex and seeds == 1:
                 index = (index + 1) % (self.holes * 2)
             seeds -= 1
+        opposite_index = self.holes*2-1-index
+        if self.board[index] == 1 and self.board[opposite_index] > 0:
+            self.bank[player] += self.board[opposite_index]+1
+            self.board[index] = 0
+            self.board[opposite_index] = 0
+
+
         if not self.is_game_over():
             if (not (index == self.holes and not player)) and (not (index == 0 and player)):
                 self.current_player = not self.current_player

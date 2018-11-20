@@ -30,8 +30,6 @@ class KalahTestCase(unittest.TestCase):
     def test_Crossing_move(self):
         self.assertEqual(self.game.play(3), "Player 2 plays next")
         self.assertEqual(self.game.status(), (4, 4, 4, 0, 5, 5, 1, 5, 4, 4, 4, 4, 4, 0))
-        # self.assertEqual(self.game.play(3), "Player 2 plays next")
-        # self.assertEqual(self.game.status(), (5, 4, 4, 0, 5, 5, 1, 5, 4, 4, 0, 5, 5, 1))
 
     def test_Two_simple_moves(self):
         self.assertEqual(self.game.play(0), "Player 2 plays next")
@@ -122,10 +120,6 @@ class KalahTestCase(unittest.TestCase):
         self.game.set_bank([14, 12])
         self.assertEqual(self.game.status(), (0, 0, 0, 0, 2, 0, 14, 0, 0, 0, 0, 0, 0, 12))
         self.assertEqual(self.game.play(4), "Player 1 Wins")
-
-
-
-
 
     def test_init_status_6(self):
         self.assertEqual(self.game1.status(), (6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 6, 6, 6, 0))

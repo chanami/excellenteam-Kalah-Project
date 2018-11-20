@@ -36,9 +36,10 @@ class Kalah(object):
     def play(self, hole):
         self.valid_hole(hole)
         player = self.current_player
+        bank_exception_flag = False
         seeds = self.board[hole + player*self.holes]
-        self.board[hole + player * self.holes] = 0
         index = hole + player * self.holes
+        self.board[index] = 0
 
         while seeds:
             bank_exception_flag = False
@@ -64,7 +65,7 @@ class Kalah(object):
 
         opposite_index = self.holes*2-1-index
         if self.board[index] == 1 and self.board[opposite_index] > 0:
-            self.check_if_capture(index,opposite_index)
+            self.check_if_capture(index, opposite_index)
 
         self.check_if_game_over()
 

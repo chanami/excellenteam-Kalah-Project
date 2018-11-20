@@ -5,6 +5,7 @@ from kalah import Kalah
 class KalahTestCase(unittest.TestCase):
     def setUp(self):
         self.game = Kalah(6, 4)
+        self.game1 = Kalah(6, 6)
 
     def test_init_status(self):
         self.assertEqual(self.game.status(), (4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0))

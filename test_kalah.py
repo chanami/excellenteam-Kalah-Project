@@ -154,8 +154,8 @@ class KalahTestCase(unittest.TestCase):
     def test_repr(self):
         self.assertEqual(repr(Kalah(6, 4)),"Kalah(4, 6, status=(4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0), player=0)")
 
-    # def test_render(self):
-    #     print(self.game.board_render())
+    def test_render(self):
+        print(self.game.render())
     #
     # def test_svg(self):
     #     print(self.game.svg_render())

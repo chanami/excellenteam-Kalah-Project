@@ -18,6 +18,9 @@ class Kalah(object):
     def __repr__(self):
         return f"Kalah({self.seeds}, {self.holes}, status={self.status()}, player={self.current_player})"
 
+    def __str__(self):
+        return self.render()
+
     def valid_hole(self, hole):
         if hole not in range(self.holes):
             raise IndexError("invalid index number :(")
@@ -103,9 +106,7 @@ class Kalah(object):
     def set_bank(self, l_bank):
         self.bank = l_bank
 
-    def board_render(self):
-        """Renders the current board to a viewable string"""
-        # There are certainly better ways to render this
+    def render(self):
         board = self.board[:self.holes] + [self.bank[0]] + self.board[self.holes:] + [self.bank[1]]
         result = '    {0: >2} {1: >2} {2: >2} {3: >2} {4: >2} {5: >2}\n'.format(
             board[0], board[1], board[2],

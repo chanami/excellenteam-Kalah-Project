@@ -156,9 +156,9 @@ class KalahTestCase(unittest.TestCase):
 
     def test_render(self):
         print(self.game.render())
-    #
-    # def test_svg(self):
-    #     print(self.game.svg_render())
+
+    def test_svg(self):
+        print(self.game.svg_render())
 
     def tearDown(self):
         pass
